@@ -4,63 +4,60 @@ import { Galaxy } from './Galaxy'
 import { TweakPane } from './Tweakpane'
 
 
-// Canvas
-const canvas = document.querySelector('canvas.webgl')
 
-// Scene
-const scene = new Scene()
+class App
+{
+    constructor()
+    {
+        this.canvas = document.querySelector('canvas.webgl')
+        this.scene = new Scene()
+        this.sizes = {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+        this.camera = new PerspectiveCamera(75, this.sizes.width / this.sizes.height, 0.1, 100)
+        this.controls = new OrbitControls(this.camera, this.canvas)
+        this.renderer = new WebGLRenderer({
+            canvas: this.canvas
+        })
+        this.galaxy = new Galaxy(this)
+        this.pane = new TweakPane(this.galaxy.generateGalaxy.bind(this.galaxy))
+    }
+    init()
+    {
+        this.camera.position.set(3, 3, 3)
+        this.scene.add(this.camera)
 
-const galaxy = new Galaxy(scene)
-galaxy.init()
-const pane = new TweakPane(galaxy.generateGalaxy)
+        this.renderer.setSize(this.sizes.width, this.sizes.height)
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
+        this.controls = new OrbitControls(this.camera, this.canvas)
+        this.controls.enableDamping = true
 
+        this.galaxy.init()
+    }
 
-/**
- * Sizes
- */
-const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
+    resize()
+    {
+        this.sizes.width = window.innerWidth
+        this.sizes.height = window.innerHeight
+        this.camera.aspect = this.sizes.width / this.sizes.height
+        this.camera.updateProjectionMatrix()
+    }
+
+    update(elapsedTime)
+    {
+        this.controls.update()
+        this.renderer.render(this.scene, this.camera)
+        this.galaxy.update(elapsedTime)
+    }
 }
 
-window.addEventListener('resize', () =>
-{
-    // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
+const app = new App()
+app.init()
 
-    // Update camera
-    camera.aspect = sizes.width / sizes.height
-    camera.updateProjectionMatrix()
+window.addEventListener('resize', app.resize.bind(app))
 
-    // Update renderer
-    renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-})
-
-/**
- * Camera
- */
-// Base camera
-const camera = new PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.x = 3
-camera.position.y = 3
-camera.position.z = 3
-scene.add(camera)
-
-// Controls
-const controls = new OrbitControls(camera, canvas)
-controls.enableDamping = true
-
-/**
- * Renderer
- */
-const renderer = new WebGLRenderer({
-    canvas: canvas
-})
-renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 /**
  * Animate
@@ -70,12 +67,8 @@ const clock = new Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+    app.update(elapsedTime)
 
-    // Update controls
-    controls.update()
-
-    // Render
-    renderer.render(scene, camera)
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
