@@ -1,5 +1,5 @@
-import restart from 'vite-plugin-restart'
 import glsl from 'vite-plugin-glsl'
+import restart from 'vite-plugin-restart'
 
 export default {
     root: 'src/',
@@ -12,7 +12,6 @@ export default {
     },
     build:
     {
-        outDir: '../dist', // Output in the dist/ folder
         emptyOutDir: true, // Empty the folder first
         sourcemap: true // Add sourcemap
     },

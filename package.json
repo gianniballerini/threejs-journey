@@ -1,0 +1,29 @@
+{
+  "name": "threejs-journey",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:gianniballerini/threejs-journey.git",
+  "author": "Gianni Ballerini <Gianniballerini@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "type": "module",
+  "devDependencies": {
+    "vite": "^6.2.2",
+    "vite-plugin-restart": "^0.4.2",
+    "vite-plugin-pug-transformer": "^1.0.8",
+    "pug": "^3.0.3",
+    "sass": "1.77.5"
+  },
+  "dependencies": {
+    "tweakpane": "^4.0.4",
+    "@tweakpane/plugin-essentials": "^0.2.1",
+    "three": "^0.174.0"
+  },
+  "scripts": {
+    "start": "yarn build && vite --port 1234",
+    "dev": "vite",
+    "build": "vite build && yarn 30",
+    "30": "cd 30-animated-galaxy && yarn build && cd .. && yarn 31",
+    "31": "cd 31-modified-materials && yarn build && cd .."
+  }
+}

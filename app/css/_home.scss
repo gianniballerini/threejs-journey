@@ -1,0 +1,28 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    row-gap: 20 * $ptr;
+
+    padding: 20 * $ptr;
+
+    background-color: $light-gray;
+    color: $black;
+}
+
+.home__title {
+    font-size: 20 * $ptr;
+    font-weight: 700;
+
+}
+
+.home__exercises {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10 * $ptr;
+
+    a {
+        color: $black;
+    }
+}

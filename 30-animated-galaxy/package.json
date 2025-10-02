@@ -6,7 +6,7 @@
   "scripts": {
     "start": "vite --port 1234",
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build --outDir ../../dist/30-animated-galaxy"
   },
   "devDependencies": {
     "vite": "^6.2.2",
