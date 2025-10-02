@@ -1,5 +1,6 @@
 import * as EssentialsPlugin from '@tweakpane/plugin-essentials';
 import { Pane } from 'tweakpane';
+import { Settings } from './Settings';
 
 class TweakPane
 {
@@ -7,16 +8,14 @@ class TweakPane
   {
     this.parent = parent
     this.pane = new Pane({
-      title: 'Galaxy settings',
+      title: 'Shader settings',
       expanded: true
     });
     this.pane.registerPlugin(EssentialsPlugin);
 
-    // this.pane.addBinding(Settings, 'count', { min: 100, max: 1000000, step: 100 }).on('change', (ev) => {
-    //     if (ev.last) {
-    //       this.generateGalaxy()
-    //     }
-    //   });
+
+    this.pane.addBinding(Settings, 'angle', { min: 0, max: 2, step: 0.01 })
+    this.pane.addBinding(Settings, 'sine')
   }
 }
 
