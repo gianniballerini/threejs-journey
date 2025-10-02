@@ -12,9 +12,9 @@ class Head
         this.model = null
 
         // Textures
-        this.mapTexture = this.textureLoader.load('/models/LeePerrySmith/color.jpg')
+        this.mapTexture = this.textureLoader.load('./models/LeePerrySmith/color.jpg')
         this.mapTexture.colorSpace = SRGBColorSpace
-        this.normalTexture = this.textureLoader.load('/models/LeePerrySmith/normal.jpg')
+        this.normalTexture = this.textureLoader.load('./models/LeePerrySmith/normal.jpg')
 
         // Material
         this.material = new MeshStandardMaterial( {
@@ -118,7 +118,7 @@ class Head
         }
 
         this.gltfLoader.load(
-            '/models/LeePerrySmith/LeePerrySmith.glb',
+            './models/LeePerrySmith/LeePerrySmith.glb',
             (gltf) =>
             {
                 // Model
