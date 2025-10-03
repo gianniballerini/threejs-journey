@@ -12,7 +12,8 @@
     "10-textures",
     "11-materials",
     "30-animated-galaxy",
-    "31-modified-materials"
+    "31-modified-materials",
+    "32-coffee-smoke-shader"
   ],
   "devDependencies": {
     "vite": "^6.2.2",
@@ -34,6 +35,7 @@
     "dev": "vite",
     "build": "vite build && yarn 30",
     "30": "cd 30-animated-galaxy && yarn build && cd .. && yarn 31",
-    "31": "cd 31-modified-materials && yarn build && cd .."
+    "31": "cd 31-modified-materials && yarn build && cd .. && yarn 32",
+    "32": "cd 32-coffee-smoke-shader && yarn build && cd .."
   }
 }
