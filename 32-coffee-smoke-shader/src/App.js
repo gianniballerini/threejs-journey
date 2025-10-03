@@ -2,6 +2,7 @@ import {
     DirectionalLight,
     PerspectiveCamera,
     Scene,
+    TextureLoader,
     WebGLRenderer
 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
@@ -31,6 +32,7 @@ class App
         })
 
         this.gltfLoader = new GLTFLoader()
+        this.textureLoader = new TextureLoader()
 
         // this.set_lights()
 
